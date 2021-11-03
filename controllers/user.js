@@ -1,4 +1,4 @@
-const bcrypt = require('../../frontend/node_modules/bcryptjs/externs/bcrypt');
+const bcrypt  = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 

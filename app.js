@@ -1,9 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const path = require("path");
 
-const Sauce = require('./models/sauce');
+const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
+
 
 mongoose.connect('mongodb+srv://KevinBrun:Kev040355@kbrunp6.b1wrm.mongodb.net/KbrunP6?retryWrites=true&w=majority',
   { useNewUrlParser: true,
@@ -20,18 +21,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(bodyParser.json());
-
-app.post('/api/sauce', (req, res, next) => {
-  delete req.body._id
-  const sauce = new Sauce({
-    ...req.body
-  });
-  sauce.save()
-    .then(() => res.status(201).json({message: 'Sauce enregistrée !'}))
-    .catch(error => res.status(400).json({error}))
-});
-
+app.use('/images', express.static(path.join(__dirname, 'images')))
 app.use('/api/auth', userRoutes);
+app.use('/api/sauces', sauceRoutes);
 
 module.exports = app;
