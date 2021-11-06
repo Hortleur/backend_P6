@@ -108,7 +108,7 @@ exports.likes = (req, res, next) => {
         break;
 
         case -1:
-            Sauce.updateOne({_id: sauceId}, {$push: {usersDisliked: userId}, $inc: {dislikes: -1}})
+            Sauce.updateOne({_id: sauceId}, {$push: {usersDisliked: userId}, $inc: {dislikes: +1}})
                 .then(() => res.status(200).json({message: 'je n\' aime pas cette sauce'}))
                 .catch((error) => res.status(400).jsonj({error}))    
         break;
