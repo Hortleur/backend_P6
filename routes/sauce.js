@@ -15,8 +15,11 @@ router.get('/', auth, sauceCtrl.getAllSauce);
 router.get('/:id', auth, sauceCtrl.getOneSauce)
 // U Mise à jour
 router.put('/:id', auth, multer, sauceCtrl.modifySauce)
+// U Mise à jour
+router.post('/:id/like', auth, sauceCtrl.likes)
 // D Suppression
 router.delete('/:id', auth, sauceCtrl.deleteSauce)
+
 
 
 module.exports = router;
